@@ -10,7 +10,7 @@ from torch.utils import data
 from torchvision.utils import save_image
 import skimage
 
-import js_general as jsg
+#import js_general as jsg
 
 ################################################################################
 ################################################################################
@@ -86,7 +86,7 @@ def augment_images_kp(dataX, dataY, seq):
     print('Transforming Y to mask...')
     aug_Y = np.zeros(dataY.shape)
     for ii, thisKp in enumerate(aug_kp_Y):
-        jsg.progress_bar(ii,aug_kp_Y.__len__())
+        #jsg.progress_bar(ii,aug_kp_Y.__len__())
         thisY = uv_to_mask(thisKp[:,0],thisKp[:,1],(dataX.shape[1],dataX.shape[2]))
         aug_Y[ii,...] = thisY
 
@@ -120,7 +120,7 @@ def load_images(imagePaths,targetSize,edgeCoords=False):
 
     print('Loading {} images...'.format(imagePaths.__len__()))
     for ii, (imPath, thisUV) in enumerate(zip(imagePaths,UVData)):
-        jsg.progress_bar(ii,imagePaths.__len__())
+        #jsg.progress_bar(ii,imagePaths.__len__())
 
         #read the image and convert to RGB
         origI = cv2.imread(imPath)
@@ -232,7 +232,7 @@ def save_train_test_imagedata(basePath, trainX, trainY, testX, testY):
     trainLabs = []
     idNum = 1
     for ii, (im, lab) in enumerate(zip(trainX, trainY)):
-        jsg.progress_bar(ii,trainX.shape[0])
+        #jsg.progress_bar(ii,trainX.shape[0])
         imName = outFormat.format(idNum)
         save_image(torch.from_numpy(cv_to_torch(im)),os.path.join(basePath,imName+'.jpg'))
         trainLabs.append(imName)
@@ -242,7 +242,7 @@ def save_train_test_imagedata(basePath, trainX, trainY, testX, testY):
     print('\nLoading {} test images...'.format(testX.shape[0]))
     testLabs = []
     for ii, (im, lab) in enumerate(zip(testX, testY)):
-        jsg.progress_bar(ii,testX.shape[0])
+        #jsg.progress_bar(ii,testX.shape[0])
         imName = outFormat.format(idNum)
         save_image(torch.from_numpy(cv_to_torch(im)),os.path.join(basePath,imName+'.jpg'))
         testLabs.append(imName)

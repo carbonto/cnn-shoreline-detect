@@ -15,7 +15,7 @@ import torch.utils as tutils
 import torchvision
 from torch.autograd import Variable
 
-import js_general as jsg
+#import js_general as jsg
 from .data_preprocessing import torchLoader
 
 ################################################################################
@@ -387,7 +387,7 @@ class Trainer(object):
             # train the network
             num = 0
             for local_batch, local_labels in self.trainingGenerator:
-                jsg.progress_bar(num,self.trainingGenerator.__len__())
+                #jsg.progress_bar(num,self.trainingGenerator.__len__())
                 num += 1
                 # Transfer to GPU
                 local_batch, local_labels = local_batch.to(self.device), local_labels.to(self.device)
